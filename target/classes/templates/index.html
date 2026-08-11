@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Lista de Tarefas</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1 th:text="${editando} != null ? 'Editar Tarefa' : 'Inserir Tarefa'">Inserir Tarefa</h1>
+
+        <!--
+            Um único formulário serve tanto para criar quanto para editar:
+            se o campo id vier preenchido (modo edição), o controller faz
+            update; se vier vazio (nova tarefa), o controller faz insert.
+        -->
+        <form method="post" action="/salvar">
+            <input type="hidden" name="id" th:value="${editando} != null ? ${editando.id} : ''"/>
+
+            <label>Tarefa</label>
+            <input type="text" name="title" th:value="${editando} != null ? ${editando.title} : ''" required/><br>
+
+            <label>Prazo</label>
+            <input type="datetime-local" name="deadLine"
+                   th:value="${editando} != null ? ${editando.deadLine} : ''" required/><br>
+
+            <button type="submit" th:text="${editando} != null ? 'Atualizar' : 'Salvar'">Salvar</button>
+            <a th:if="${editando} != null" href="/">Cancelar</a>
+        </form>
+
+        <br>
+        <table border="1" cellpadding="6">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Criada em</th>
+                    <th>Prazo</th>
+                    <th>Situação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="todo : ${todos}">
+                    <td th:text="${todo.title}"></td>
+                    <td th:text="${#temporals.format(todo.createdAt, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td th:text="${#temporals.format(todo.deadLine, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td th:text="${todo.finished} ? 'Concluída' : 'Pendente'"></td>
+                    <td>
+                        <form method="post" th:action="@{/{id}/concluir(id=${todo.id})}" style="display:inline">
+                            <button type="submit" th:text="${todo.finished} ? 'Reabrir' : 'Concluir'"></button>
+                        </form>
+                        <a th:href="@{/{id}/editar(id=${todo.id})}">Editar</a>
+                        <form method="post" th:action="@{/{id}/excluir(id=${todo.id})}" style="display:inline"
+                              onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
