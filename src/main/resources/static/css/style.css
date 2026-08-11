@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f5f7;
+    color: #2b2d33;
+    margin: 0;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 30px 35px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+h1 {
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.vazio {
+    text-align: center;
+    color: #888;
+    padding: 30px 0;
+}
+
+.lista-tarefas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tarefa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 16px;
+    border: 1px solid #e5e6ea;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.tarefa.concluida {
+    background-color: #f0faf1;
+    border-color: #cdeccf;
+}
+
+.tarefa.concluida h3 {
+    text-decoration: line-through;
+    color: #7a7a7a;
+}
+
+.tarefa-info h3 {
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+}
+
+.tarefa-info p {
+    margin: 0 0 6px 0;
+    color: #555;
+    font-size: 0.92rem;
+}
+
+.data {
+    font-size: 0.78rem;
+    color: #999;
+}
+
+.tarefa-acoes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tarefa-acoes form {
+    display: inline;
+}
+
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    transition: opacity 0.15s ease-in-out;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+.btn-primary {
+    background-color: #3f6fe0;
+}
+
+.btn-secondary {
+    background-color: #b0b3bb;
+}
+
+.btn-check {
+    background-color: #2fa85a;
+}
+
+.btn-edit {
+    background-color: #e0a83f;
+}
+
+.btn-delete {
+    background-color: #d84f4f;
+}
+
+.form-tarefa {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.campo input[type="text"],
+.campo textarea {
+    padding: 10px;
+    border: 1px solid #d5d7dd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+
+.campo.checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+}
+
+.erro {
+    color: #d84f4f;
+    font-size: 0.8rem;
+}
+
+.acoes-form {
+    display: flex;
+    gap: 10px;
+}

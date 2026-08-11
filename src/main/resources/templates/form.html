@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${modoEdicao} ? 'Editar Tarefa' : 'Nova Tarefa'">Nova Tarefa</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1 th:text="${modoEdicao} ? '✎ Editar Tarefa' : '+ Nova Tarefa'">Nova Tarefa</h1>
+    </header>
+
+    <!--
+        th:object liga este <form> ao objeto "todo" enviado pelo Controller.
+        th:field="*{campo}" faz o binding automático: preenche o campo com
+        o valor atual (no modo edição) e, ao enviar, popula o objeto Todo
+        com o que o usuário digitou.
+    -->
+    <form th:action="@{/tarefas}" th:object="${todo}" method="post" class="form-tarefa">
+
+        <!-- Campo oculto com o id: essencial para o UPDATE funcionar -->
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="campo">
+            <label for="titulo">Título *</label>
+            <input type="text" id="titulo" th:field="*{titulo}" placeholder="Ex: Estudar para a prova de Java" />
+            <span class="erro" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}">Erro no título</span>
+        </div>
+
+        <div class="campo">
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao" th:field="*{descricao}" rows="4"
+                      placeholder="Detalhes opcionais sobre a tarefa"></textarea>
+            <span class="erro" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}">Erro na descrição</span>
+        </div>
+
+        <div class="campo checkbox" th:if="${modoEdicao}">
+            <label>
+                <input type="checkbox" th:field="*{concluida}" />
+                Tarefa concluída
+            </label>
+        </div>
+
+        <div class="acoes-form">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a th:href="@{/tarefas}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
