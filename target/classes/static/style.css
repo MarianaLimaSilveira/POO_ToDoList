@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
+/* ===================================================
+   Base — mesma cara do blog, adaptada pro todolist
+   =================================================== */
+body {
+    font-family: 'DotGothic16', sans-serif;
+    background-image: url('pink_.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-image:
+        radial-gradient(circle at 15% 20%, rgba(255, 66, 161, 0.25), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(255, 66, 161, 0.25), transparent 40%);
+    color: #640d31;
+    min-height: 100vh;
+    margin: 0;
+    cursor: url('https://cdn.cursors-4u.net/css-previews/shiny-magenta-spinning-heart-a44fb078-css.webp') 0 0, auto !important;
+}
+
+.container {
+    max-width: 850px;
+    width: 95%;
+    margin: 40px auto;
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 3px dashed #ff42a1;
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #ff1493;
+    text-align: center;
+    text-shadow: 2px 2px #ffd1dc;
+    margin: 0 0 20px 0;
+}
+
+.box-interna {
+    border: 2px solid #ff4190;
+    background-color: #ffacd6;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box; /* impede padding de estourar a largura */
+}
+
+hr {
+    border: 0;
+    border-top: 2px dashed #ffb6c1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+mark {
+    background-color: hsl(0, 0%, 0%);
+    color: hsl(338, 100%, 76%);
+    border-radius: 3px;
+    padding: 2px 5px;
+}
+
+/* ===================================================
+   Formulário (inserir / editar tarefa)
+   =================================================== */
+.form-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.form-box label {
+    display: block;
+    font-weight: bold;
+    color: #640d31;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.form-box .campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-box input[type="text"],
+.form-box input[type="datetime-local"] {
+    font-family: 'DotGothic16', sans-serif;
+    padding: 8px 10px;
+    border: 2px solid #ff4190;
+    border-radius: 8px;
+    background-color: #fff0f6;
+    color: #640d31;
+    box-sizing: border-box;
+}
+
+.form-box input[type="text"]:focus,
+.form-box input[type="datetime-local"]:focus {
+    outline: none;
+    border-color: #ff1493;
+    box-shadow: 0 0 6px rgba(255, 20, 147, 0.6);
+}
+
+/* ===================================================
+   Botões — mesma paleta, com cores diferentes por ação
+   =================================================== */
+button,
+.form-box a,
+.tabela-box a {
+    font-family: 'DotGothic16', sans-serif;
+    display: inline-block;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover,
+.form-box a:hover,
+.tabela-box a:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 2px 3px 0 #000000;
+}
+
+/* botão principal: Salvar / Atualizar */
+.btn-salvar {
+    background-color: #ff42a1;
+    color: #ffffff;
+}
+
+.btn-cancelar {
+    background-color: #ffacd6;
+    color: #640d31;
+}
+
+/* ações da tabela */
+.btn-concluir {
+    background-color: #b6f2a1;
+    color: #2e5d1e;
+}
+
+.btn-reabrir {
+    background-color: #ffe28a;
+    color: #6a4b00;
+}
+
+.btn-editar {
+    background-color: #a1d4f2;
+    color: #123a5c;
+}
+
+.btn-excluir {
+    background-color: #ff6f91;
+    color: #ffffff;
+}
+
+/* ===================================================
+   Tabela de tarefas
+   =================================================== */
+.tabela-box {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff0f6;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead th {
+    background-color: #ff1493;
+    color: #ffffff;
+    text-shadow: 1px 1px #640d31;
+    padding: 10px;
+    text-align: left;
+    border: 2px solid #000000;
+}
+
+tbody td {
+    padding: 10px;
+    border: 1px dashed #ff4190;
+    color: #640d31;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffd1dc;
+}
+
+tbody tr:hover {
+    background-color: #ffb6d9;
+}
+
+/* status da tarefa, marcado no HTML com th:class */
+.situacao-concluida {
+    display: inline-block;
+    background-color: #b6f2a1;
+    color: #2e5d1e;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-weight: bold;
+}
+
+.situacao-pendente {
+    display: inline-block;
+    background-color: #ffe28a;
+    color: #6a4b00;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-weight: bold;
+}
+
+.acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* ===================================================
+   Responsivo — telas até 600px
+   =================================================== */
+@media (max-width: 600px) {
+    .form-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-box input[type="text"],
+    .form-box input[type="datetime-local"] {
+        width: 100%;
+    }
+
+    thead {
+        display: none;
+    }
+
+    table, tbody, tr, td {
+        display: block;
+        width: 100%;
+    }
+
+    tbody tr {
+        margin-bottom: 12px;
+        border: 2px solid #ff4190;
+        border-radius: 8px;
+    }
+
+    tbody td {
+        border: none;
+        border-bottom: 1px dashed #ff4190;
+    }
+
+    tbody td:last-child {
+        border-bottom: none;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        color: #ff1493;
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+}
