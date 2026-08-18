@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.edu.ifpr.todolist.exception.TarefaNaoEncontradaException;
 import br.edu.ifpr.todolist.model.Todo;
 import br.edu.ifpr.todolist.repository.TodoRepository;
 
@@ -34,7 +35,8 @@ public class TodoController {
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
         Todo todo = todoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Tarefa não encontrada: id " + id));
+                .orElseThrow(() -> new TarefaNaoEncontradaException(
+                        "Não foi possível editar: a tarefa de id " + id + " não existe."));
 
         return new ModelAndView("index", Map.of(
                 "todos", todoRepository.findAll(),
@@ -53,7 +55,8 @@ public class TodoController {
     @PostMapping("/{id}/concluir")
     public String concluir(@PathVariable Long id) {
         Todo todo = todoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Tarefa não encontrada: id " + id));
+                .orElseThrow(() -> new TarefaNaoEncontradaException(
+                        "Não foi possível concluir: a tarefa de id " + id + " não existe."));
 
         if (todo.isFinished()) {
             todo.markAsUnfinished();
@@ -66,7 +69,11 @@ public class TodoController {
 
     @PostMapping("/{id}/excluir")
     public String excluir(@PathVariable Long id) {
-        todoRepository.deleteById(id);
+        Todo todo = todoRepository.findById(id)
+                .orElseThrow(() -> new TarefaNaoEncontradaException(
+                        "Não foi possível excluir: a tarefa de id " + id + " não existe."));
+
+        todoRepository.delete(todo);
         return "redirect:/";
     }
 

@@ -5,11 +5,15 @@
    =================================================== */
 body {
     font-family: 'DotGothic16', sans-serif;
-    background-image: url('pink_.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: #ffd1dc;
+    /* Se quiser usar uma imagem de fundo (igual ao blog), troque a linha
+       acima por algo assim e coloque o arquivo em src/main/resources/static/:
+       background-image: url('pink_.jpg');
+       background-repeat: no-repeat;
+       background-size: cover;
+       background-position: center;
+       background-attachment: fixed;
+    */
     background-image:
         radial-gradient(circle at 15% 20%, rgba(255, 66, 161, 0.25), transparent 40%),
         radial-gradient(circle at 85% 80%, rgba(255, 66, 161, 0.25), transparent 40%);

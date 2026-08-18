@@ -12,7 +12,11 @@
         <main class="container">
             <h1 th:text="${editando} != null ? 'Editar Tarefa' : 'Inserir Tarefa'">Inserir Tarefa</h1>
 
-            
+            <!--
+                Um único formulário serve tanto para criar quanto para editar:
+                se o campo id vier preenchido (modo edição), o controller faz
+                update; se vier vazio (nova tarefa), o controller faz insert.
+            -->
             <section class="box-interna form-box">
                 <form method="post" action="/salvar" style="display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end;">
                     <input type="hidden" name="id" th:value="${editando} != null ? ${editando.id} : ''"/>
